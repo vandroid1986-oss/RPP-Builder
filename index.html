@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Builder Rencana Pembelajaran Kurikulum Merdeka</title>
+    <!-- Tailwind CSS untuk Desain Premium -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons untuk estetika visual -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-10 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-indigo-600 text-white rounded-xl shadow-md shadow-indigo-100">
+                    <i data-lucide="sparkles" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold text-slate-900 tracking-tight">Prompt Builder RPP</h1>
+                    <p class="text-xs text-slate-500 font-medium">Generator Perintah AI untuk Rencana Pembelajaran Terstruktur</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 text-xs bg-amber-50 text-amber-800 px-3 py-1.5 rounded-full border border-amber-200 font-semibold shadow-sm">
+                <i data-lucide="info" class="w-4 h-4 text-amber-600"></i>
+                Format Lengkap Kurikulum Merdeka & Standar Asesmen 2026
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Left Side: Input Form (Builder) -->
+            <section class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+                <div class="p-6 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="sliders" class="w-5 h-5 text-indigo-600"></i>
+                        <h2 class="font-bold text-slate-900 text-lg">Konfigurasi Pembelajaran</h2>
+                    </div>
+                    <button onclick="resetForm()" class="text-xs text-rose-600 hover:text-rose-700 font-bold flex items-center gap-1 transition-colors">
+                        <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Bersihkan
+                    </button>
+                </div>
+                
+                <div class="p-6 space-y-6 overflow-y-auto max-h-[70vh]">
+                    
+                    <!-- Section 1: Informasi Umum -->
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2 pb-2 border-b border-slate-100">
+                            <span class="w-6 h-6 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-xs">1</span>
+                            <h3 class="font-bold text-slate-800 text-sm tracking-wide uppercase">Informasi Umum</h3>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Mata Pelajaran <span class="text-rose-500">*</span></label>
+                                <input type="text" id="mapel" placeholder="Contoh: Matematika, Bahasa Indonesia" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all" value="Bahasa Indonesia">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Nama Guru / Instansi</label>
+                                <input type="text" id="guru" placeholder="Nama Anda" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all" value="Dewi Sartika, S.Pd.">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Fase / Kelas <span class="text-rose-500">*</span></label>
+                                <input type="text" id="kelas" placeholder="Contoh: Fase C / Kelas 5" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all" value="Fase C / Kelas 5">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Semester</label>
+                                <input type="text" id="semester" placeholder="Contoh: I (Ganjil)" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all" value="II (Genap)">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Tahun Ajaran</label>
+                                <input type="text" id="tahun" placeholder="Contoh: 2025/2026" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all" value="2025/2026">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Alokasi Waktu JP <span class="text-rose-500">*</span></label>
+                                <input type="text" id="alokasi" placeholder="Contoh: 8 JP" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all" value="8 JP (4 Pertemuan)">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Materi Pokok <span class="text-rose-500">*</span></label>
+                                <input type="text" id="materi" placeholder="Contoh: Menulis Teks Eksplanasi Fenomena Alam" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all" value="Menulis Teks Narasi Kreatif Berdasarkan Pengalaman">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-2">Dimensi Profil Lulusan / Profil Pelajar Pancasila (Pilih yang relevan):</label>
+                            <div class="grid grid-cols-2 gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <label class="flex items-center gap-2.5 text-xs font-medium text-slate-700 cursor-pointer">
+                                    <input type="checkbox" name="profil" value="Keimanan dan Ketakwaan terhadap Tuhan YME" checked class="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500">
+                                    <span>Keimanan & Ketakwaan</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 text-xs font-medium text-slate-700 cursor-pointer">
+                                    <input type="checkbox" name="profil" value="Kewargaan" class="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500">
+                                    <span>Kewargaan</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 text-xs font-medium text-slate-700 cursor-pointer">
+                                    <input type="checkbox" name="profil" value="Penalaran Kritis" checked class="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500">
+                                    <span>Penalaran Kritis</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 text-xs font-medium text-slate-700 cursor-pointer">
+                                    <input type="checkbox" name="profil" value="Kreativitas" checked class="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500">
+                                    <span>Kreativitas</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 text-xs font-medium text-slate-700 cursor-pointer">
+                                    <input type="checkbox" name="profil" value="Kolaborasi" checked class="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500">
+                                    <span>Kolaborasi</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 text-xs font-medium text-slate-700 cursor-pointer">
+                                    <input type="checkbox" name="profil" value="Kemandirian" checked class="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500">
+                                    <span>Kemandirian</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 text-xs font-medium text-slate-700 cursor-pointer">
+                                    <input type="checkbox" name="profil" value="Kesejahteraan/Kesehatan" class="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500">
+                                    <span>Kesehatan / Well-being</span>
+                                </label>
+                                <label class="flex items-center gap-2.5 text-xs font-medium text-slate-700 cursor-pointer">
+                                    <input type="checkbox" name="profil" value="Komunikasi" checked class="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500">
+                                    <span>Komunikasi</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Desain Pembelajaran -->
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2 pb-2 border-b border-slate-100">
+                            <span class="w-6 h-6 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-xs">2</span>
+                            <h3 class="font-bold text-slate-800 text-sm tracking-wide uppercase">Desain Pembelajaran</h3>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Tujuan Pembelajaran (TP) <span class="text-rose-500">*</span></label>
+                            <textarea id="tujuan" rows="2" placeholder="Tuliskan tujuan pembelajaran utama..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all">Peserta didik mampu menulis teks narasi kreatif secara runtut, bermakna, dan menarik dengan memperhatikan unsur-unsur intrinsik cerita serta tanda baca yang tepat.</textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Indikator Tujuan Pembelajaran <span class="text-rose-500">*</span></label>
+                            <textarea id="indikator" rows="2" placeholder="Gunakan baris baru untuk setiap indikator..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all">1. Mengidentifikasi struktur teks narasi (orientasi, komplikasi, resolusi).
+2. Menyusun kerangka karangan teks narasi kreatif.
+3. Mengembangkan kerangka karangan menjadi teks narasi utuh dengan pilihan kata/diksi menarik.</textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Kriteria Ketercapaian Tujuan Pembelajaran (KKTP)</label>
+                            <textarea id="kktp" rows="2" placeholder="Gunakan baris baru untuk setiap kriteria ketercapaian..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all">1. Mampu menyusun alur cerita yang logis dan runtut.
+2. Menggunakan pilihan kosakata variatif untuk menggambarkan latar dan tokoh.
+3. Menggunakan tanda baca (titik, koma, tanda petik) dan huruf kapital dengan tepat.</textarea>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Praktik Pedagogis (Model/Metode/Strategi) <span class="text-rose-500">*</span></label>
+                                <input type="text" id="pedagogis" placeholder="Contoh: Project-Based Learning, Diskusi, Mind Mapping" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all" value="Project-Based Learning (PjBL), Diskusi Kelompok, Eksplorasi Kreatif">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Kemitraan Pembelajaran</label>
+                                <input type="text" id="kemitraan" placeholder="Contoh: Orang tua (berbagi cerita masa kecil), Komunitas lokal" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all" value="Orang tua (sebagai narasumber inspirasi cerita), Perpustakaan Sekolah">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Lingkungan Pembelajaran (Fisik, Sosial, Emosional)</label>
+                                <textarea id="lingkungan" rows="2" placeholder="Gunakan baris baru untuk mendeskripsikan kondisi..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all">1. Fisik: Ruang kelas yang fleksibel untuk diskusi kelompok dan pojok baca.
+2. Sosial: Interaksi suportif dan saling mengapresiasi antar kelompok.
+3. Emosional: Menciptakan atmosfer aman untuk berekspresi tanpa takut salah.</textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Pemanfaatan Digital (Alat, Sumber, Platform)</label>
+                                <textarea id="digital" rows="2" placeholder="Gunakan baris baru untuk menyebutkan pemanfaatan digital..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all">1. Chromebook/Laptop untuk mengetik atau mencari inspirasi.
+2. Aplikasi pengolah kata (Google Docs) atau Canva untuk tata letak cerita.
+3. Padlet untuk membagikan karya secara digital dan melakukan review antar teman.</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Pengaturan Gaya & Fokus AI -->
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2 pb-2 border-b border-slate-100">
+                            <span class="w-6 h-6 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-xs">3</span>
+                            <h3 class="font-bold text-slate-800 text-sm tracking-wide uppercase">Kustomisasi Output AI</h3>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Nada & Gaya Bahasa RPP</label>
+                                <select id="gaya_bahasa" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm bg-white">
+                                    <option value="Sangat profesional, aplikatif, dan detail berbasis Kurikulum Merdeka">Profesional & Detail (Sangat Direkomendasikan)</option>
+                                    <option value="Inspiratif, ramah murid, dan berfokus pada aktivitas kontekstual">Inspiratif & Ramah Anak</option>
+                                    <option value="Sederhana, padat, langsung pada sasaran kegiatan">Ringkas & Praktis</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Fokus Tambahan</label>
+                                <input type="text" id="fokus" placeholder="Contoh: Fokus pada Pembelajaran Diferensiasi & Sosial Emosional" class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm transition-all" value="Sarat pembelajaran sosial-emosional (KSE), scaffolding untuk siswa lambat belajar">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <!-- Action Bar -->
+                <div class="p-6 border-t border-slate-100 bg-slate-50 flex gap-3">
+                    <button onclick="generatePrompt()" class="flex-grow bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-indigo-200 flex items-center justify-center gap-2 transition-all">
+                        <i data-lucide="cog" class="w-5 h-5 animate-spin-slow"></i>
+                        <span>Buat Prompt AI</span>
+                    </button>
+                </div>
+            </section>
+            
+            <!-- Right Side: Live Generated Prompt -->
+            <section class="lg:col-span-5 flex flex-col gap-6">
+                
+                <!-- Live Prompt Box -->
+                <div class="bg-slate-900 text-slate-100 rounded-2xl shadow-xl border border-slate-800 flex flex-col flex-grow min-h-[500px]">
+                    <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950/50 rounded-t-2xl">
+                        <div class="flex items-center gap-2">
+                            <span class="flex h-2.5 w-2.5 relative">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                            </span>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Hasil Prompt AI</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button id="copyBtn" onclick="copyPromptToClipboard()" class="bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white text-xs font-bold px-3.5 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors shadow-md shadow-indigo-900/50">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 flex-grow overflow-y-auto max-h-[550px] relative">
+                        <pre id="promptResult" class="text-xs font-mono whitespace-pre-wrap leading-relaxed text-slate-300">Harap isi form di sebelah kiri dan klik tombol "Buat Prompt AI" untuk melihat hasil prompt di sini...</pre>
+                    </div>
+
+                    <div class="p-4 bg-slate-950/80 rounded-b-2xl border-t border-slate-800/60 text-[10px] text-slate-400 flex items-start gap-2">
+                        <i data-lucide="info" class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5"></i>
+                        <p>Prompt ini dirancang dengan instruksi berlapis guna memaksa AI menghasilkan format HTML asli lengkap dengan styling, kolom-kolom tabel, dan warna visual yang menarik tanpa harus tahu coding.</p>
+                    </div>
+                </div>
+
+                <!-- How to use widget -->
+                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-5 border border-indigo-100/80 flex gap-4">
+                    <div class="p-3 bg-white rounded-xl text-indigo-600 h-fit shadow-md shadow-indigo-100/50">
+                        <i data-lucide="help-circle" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-sm">Bagaimana cara menggunakannya?</h4>
+                        <ol class="text-xs text-slate-600 list-decimal pl-4 mt-2 space-y-1.5 font-medium">
+                            <li>Isi detail mata pelajaran, materi, dan tujuan di form kiri.</li>
+                            <li>Klik <strong class="text-indigo-600">Buat Prompt AI</strong> untuk memformulasi instruksi khusus.</li>
+                            <li>Salin prompt yang dihasilkan menggunakan tombol <strong class="text-indigo-600">Salin Prompt</strong>.</li>
+                            <li>Tempel (paste) prompt tersebut ke asisten AI pilihan Anda (Gemini, ChatGPT, Claude, dll).</li>
+                            <li>AI akan memproses RPP Anda secara instan dan mengeluarkannya dalam format HTML siap pakai!</li>
+                        </ol>
+                    </div>
+                </div>
+
+            </section>
+            
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-xs text-slate-400 font-medium">&copy; 2026 Prompt Builder Rencana Pembelajaran Kurikulum Merdeka. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 transition-all duration-300 border border-slate-800 z-50">
+        <div class="p-1 bg-emerald-500 rounded-lg text-white">
+            <i data-lucide="check" class="w-4 h-4"></i>
+        </div>
+        <span class="text-xs font-bold" id="toastMessage">Prompt berhasil disalin!</span>
+    </div>
+
+    <!-- Scripting Area -->
+    <script>
+        // Inisialisasi ikon Lucide
+        lucide.createIcons();
+
+        // Fungsi Reset Form
+        function resetForm() {
+            document.getElementById('mapel').value = '';
+            document.getElementById('guru').value = '';
+            document.getElementById('kelas').value = '';
+            document.getElementById('semester').value = '';
+            document.getElementById('tahun').value = '2026';
+            document.getElementById('alokasi').value = '';
+            document.getElementById('materi').value = '';
+            document.getElementById('tujuan').value = '';
+            document.getElementById('indikator').value = '';
+            document.getElementById('kktp').value = '';
+            document.getElementById('pedagogis').value = '';
+            document.getElementById('kemitraan').value = '';
+            document.getElementById('lingkungan').value = '';
+            document.getElementById('digital').value = '';
+            
+            // Uncheck Profil Lulusan
+            const checkboxes = document.getElementsByName('profil');
+            checkboxes.forEach(cb => cb.checked = false);
+
+            document.getElementById('promptResult').innerText = 'Form telah dibersihkan. Harap isi kembali.';
+            showToast('Form berhasil di-reset!');
+        }
+
+        // Fungsi Generate Prompt Utama
+        function generatePrompt() {
+            // Validasi Input Wajib
+            const mapel = document.getElementById('mapel').value.trim();
+            const kelas = document.getElementById('kelas').value.trim();
+            const materi = document.getElementById('materi').value.trim();
+            const alokasi = document.getElementById('alokasi').value.trim();
+            const tujuan = document.getElementById('tujuan').value.trim();
+            const indikator = document.getElementById('indikator').value.trim();
+
+            if (!mapel || !kelas || !materi || !alokasi || !tujuan || !indikator) {
+                showToast('Harap lengkapi semua field bertanda bintang (*)!', 'error');
+                return;
+            }
+
+            // Ambil Profil Lulusan yang dipilih
+            const profilChecked = [];
+            document.getElementsByName('profil').forEach(cb => {
+                if(cb.checked) profilChecked.push(cb.value);
+            });
+
+            // Ambil semua data lainnya
+            const guru = document.getElementById('guru').value.trim() || '____________________';
+            const semester = document.getElementById('semester').value.trim() || 'I / II';
+            const tahun = document.getElementById('tahun').value.trim() || '2025/2026';
+            const kktp = document.getElementById('kktp').value.trim() || 'Akan di-generate otomatis secara detail oleh AI.';
+            const pedagogis = document.getElementById('pedagogis').value.trim() || 'Metode pembelajaran aktif.';
+            const kemitraan = document.getElementById('kemitraan').value.trim() || '-';
+            const lingkungan = document.getElementById('lingkungan').value.trim() || '-';
+            const digital = document.getElementById('digital').value.trim() || '-';
+            const gayaBahasa = document.getElementById('gaya_bahasa').value;
+            const fokus = document.getElementById('fokus').value.trim();
+
+            // Format checklist dimensi profil
+            let profilFormatStr = '';
+            const allProfils = [
+                "Keimanan dan Ketakwaan terhadap Tuhan YME",
+                "Kewargaan",
+                "Penalaran Kritis",
+                "Kreativitas",
+                "Kolaborasi",
+                "Kemandirian",
+                "Kesehatan",
+                "Komunikasi"
+            ];
+            
+            allProfils.forEach(p => {
+                const isChecked = profilChecked.includes(p);
+                profilFormatStr += `\n: [${isChecked ? 'x' : ' '}] ${p}`;
+            });
+
+            // Penyusunan kerangka Mega-Prompt
+            const megaPrompt = `Buatkan Dokumen Rencana Perencanaan Pembelajaran (RPP) yang SANGAT DETAIL dan LENGKAP dengan standar format HTML5 yang terstruktur indah dan rapi. 
+
+### KETENTUAN UTAMA:
+1. Hasil akhir HARUS berupa kode HTML penuh (full HTML code) yang valid, bersih, responsif, dan siap dijalankan langsung di browser.
+2. Gunakan CSS yang modern (Anda boleh menggunakan framework CSS online seperti Tailwind CSS lewat CDN \`<script src="https://cdn.tailwindcss.com"><\/script>\` agar desain terlihat sangat premium, bersih, profesional, memiliki kombinasi warna yang teduh (seperti paduan indigo, slate, dan soft green/blue), serta memiliki padding/whitespace yang luas).
+3. Buat seluruh tabel asesmen, rubrik, dan instrumen observasi tampil rapi, lebar penuh (full-width), tidak sempit, dan memiliki garis pembatas (border) yang tipis dan kontras yang pas.
+4. Nada dokumen: ${gayaBahasa}.
+5. Fokus Tambahan RPP ini: ${fokus ? fokus : 'Pembelajaran bermakna berbasis kompetensi nyata.'}
+
+---
+
+### STRUKTUR FORMAT RPP YANG WAJIB DIISI (HARUS PERSIS FORMAT INI DI DALAM HTML):
+
+# [JUDUL UTAMA TOPIK SESUAI MATERI: ${materi.toUpperCase()}]
+
+## I. INFORMASI UMUM
+
+Mata Pelajaran: ${mapel}
+Nama Guru: ${guru}
+Fase/Kelas: ${kelas}
+Semester: ${semester}
+Alokasi Waktu JP: ${alokasi}
+Pertemuan: 4 Pertemuan (Pertemuan 1, 2, 3, dan 4)
+Tahun Ajaran: ${tahun}
+Dimensi Profil Lulusan:${profilFormatStr}
+Materi: ${materi}
+
+## DESAIN PEMBELAJARAN
+
+Tujuan Pembelajaran: ${tujuan}
+
+Indikator Tujuan Pembelajaran:
+${indikator}
+
+Kriteria Ketercapaian Tujuan Pembelajaran:
+${kktp}
+
+Praktik Pedagogis: ${pedagogis}
+Kemitraan Pembelajaran: ${kemitraan}
+Lingkungan Pembelajaran:
+${lingkungan}
+Pemanfaatan Digital:
+${digital}
+
+---
+
+## II. PENGALAMAN BELAJAR (LANGKAH-LANGKAH PEMBELAJARAN)
+*Instruksi Khusus*: Harap uraikan langkah pembelajaran di bawah ini secara mendetail untuk 4 PERTEMUAN secara lengkap dan aplikatif. Setiap pertemuan wajib mencakup tahapan berikut:
+
+### Pertemuan 1
+- **Kegiatan Awal** (Prinsip Pembelajaran : Berkesadaran, Bermakna) - *Rincikan minimal 3 poin aktivitas operasional guru dan murid.*
+- **Kegiatan Inti** (Prinsip Pembelajaran : Berkesadaran, Bermakna, Menggembirakan)
+  - *MEMAHAMI*: (Uraikan aktivitas eksplorasi konsep/pemahaman materi)
+  - *MENGAPLIKASI*: (Uraikan aktivitas praktik, kerja kelompok, atau eksperimen langsung)
+  - *MEREFLEKSI*: (Uraikan aktivitas evaluasi diri atau menyimpulkan esensi pembelajaran)
+- **Kegiatan Penutup** (Prinsip Pembelajaran : Berkesadaran, Bermakna) - *Rincikan minimal 3 poin kegiatan, refleksi cepat, atau tugas pengantar.*
+
+### Pertemuan 2
+*(Lakukan format rincian yang sama persis seperti Pertemuan 1, namun isi kegiatannya harus menunjukkan progres perkembangan dari pertemuan sebelumnya).*
+
+### Pertemuan 3
+*(Lakukan format rincian yang sama persis seperti Pertemuan 1, namun isi kegiatannya harus menunjukkan kelanjutan pengerjaan proyek/tugas).*
+
+### Pertemuan 4
+*(Lakukan format rincian yang sama persis seperti Pertemuan 1, berfokus pada penyelesaian, finalisasi, presentasi produk, refleksi besar, atau asesmen sumatif).*
+
+---
+
+## III. ASESMEN PEMBELAJARAN
+
+### 1. Tabel Matriks Asesmen
+*Tampilkan dalam tabel HTML yang sangat estetik dengan kolom:*
+- Tahapan Asesmen
+- Jenis Asesmen
+- Teknik Asesmen
+- Instrumen & Bentuk Asesmen
+- Pertemuan Ke-
+
+*(Isi baris tabel berikut secara berurutan:)*
+- **Asesmen Awal Pembelajaran (Asesmen Diagnostik)** -> Detailkan jenis, teknik, instrumennya untuk mendeteksi kesiapan awal murid di awal materi.
+- **Asesmen Proses Pembelajaran (Asesmen Formatif) untuk Pertemuan 1** -> Berfokus pada aktivitas memahami.
+- **Asesmen Proses Pembelajaran (Asesmen Formatif) untuk Pertemuan 2** -> Berfokus pada proses penyusunan/praktik awal.
+- **Asesmen Proses Pembelajaran (Asesmen Formatif) untuk Pertemuan 3** -> Berfokus pada hasil draf atau perkembangan.
+- **Asesmen Akhir Pembelajaran (Asesmen Sumatif) untuk Pertemuan 4** -> Asesmen produk akhir atau tes komprehensif.
+
+### 2. Lembar Observasi Pembelajaran
+*Buatkan tabel evaluasi proses:*
+- Tuliskan header: "Materi : ${materi}"
+- Kolom Tabel: No. | Nama Murid | Mulai Berkembang | Berkembang | Cakap
+- Berikan setidaknya 5 contoh baris nama murid fiktif dengan centang (✓) sebaran pencapaian untuk ilustrasi guru nyata.
+- Di bawah tabel, sertakan ruang khusus bertuliskan: **"Catatan Guru: [Berikan paragraf naratif contoh catatan analisis guru yang profesional]"**
+
+### 3. Rubrik Penilaian (Pemahaman Konsep Umum)
+*Buatkan Tabel Rubrik:*
+- Kolom: Mulai Berkembang | Berkembang | Cakap
+- Baris: Jabarkan kriteria penilaian secara deskriptif untuk masing-masing predikat tersebut secara konkret berdasarkan tujuan pembelajaran Anda.
+
+### 4. Kriteria Ketercapaian Tujuan Pembelajaran (KKTP) Individual
+- Tuliskan teks keterangan: *"Murid dinyatakan mencapai Tujuan Pembelajaran apabila tiga (3) KKTP telah memperoleh predikat Cakap."*
+- Nama Murid: .......................................
+- Buatkan Tabel KKTP dengan Kolom: Kriteria Ketercapaian Tujuan Pembelajaran | Baru Berkembang | Layak | Cakap | Mahir
+- Isi tabel dengan minimal 3-4 kriteria spesifik yang diturunkan dari tujuan pembelajaran di atas, lengkap dengan penjelasannya untuk masing-masing kualifikasi (Baru Berkembang s.d. Mahir).
+
+### 5. Rubrik Penilaian Kriteria Ketercapaian Tujuan Pembelajaran (KKTP)
+- Buatkan tabel deskriptif detail yang menjelaskan KAPAN seorang murid berhak mendapatkan nilai/predikat: Baru Berkembang, Layak, Cakap, dan Mahir.
+
+### 6. Rencana Tindak Lanjut Asesmen
+*Buat dalam format box yang jelas:*
+- **Belum mencapai KKTP**: (Sebutkan strategi remedial intervensi khusus terperinci).
+- **Sudah mencapai KKTP**: (Sebutkan aktivitas pengayaan yang menantang dan memperluas wawasan murid).
+
+---
+
+## REFLEKSI GURU
+*Uraikan jawaban deskriptif hipotetis yang reflektif dan profesional untuk 4 pertanyaan berikut agar guru mendapatkan wawasan nyata:*
+1. Apakah proses pembelajaran sesuai dengan tujuan pembelajaran?
+2. Apakah asesmen sesuai dengan tujuan pembelajaran?
+3. Apakah proses pembelajaran menarik, menantang dan menyenangkan?
+4. Apa rencana tindak lanjut yang ingin dilaksanakan pada pembelajaran berikutnya?
+
+---
+
+## SUMBER BELAJAR
+*(Sebutkan minimal 4 sumber belajar terpercaya, termasuk buku paket resmi kemdikbud, tautan modul ajar, video edukasi interaktif, atau artikel pembelajaran yang kontekstual).*
+
+---
+
+## LEMBAR PENGESAHAN (TANDA TANGAN)
+*Buat layout tanda tangan yang sejajar secara profesional (kiri Kepala Sekolah, kanan Guru Mata Pelajaran) lengkap dengan nama, NIP (gunakan placeholder), tempat, dan tanggal:*
+- Kepala Sekolah SD Negeri ....................
+- .................................... (NIP. ................................)
+- ..........., Januari 2026
+- Guru Kelas/Mata Pelajaran
+- .................................... (NIP. ................................)
+
+### ATURAN PENTING GENERATOR AI:
+Jangan potong hasil output Anda. Tuliskan kode HTML seutuhnya secara utuh dan lengkap dari deklarasi \`<!DOCTYPE html>\` hingga penutup \`</html>\`. Pastikan layoutnya elegan, responsif, menggunakan palet warna yang memanjakan mata, serta siap dicetak (print-friendly) oleh guru!`;
+
+            // Tampilkan hasil generator
+            document.getElementById('promptResult').innerText = megaPrompt;
+            showToast('Prompt RPP Berhasil Dibuat!');
+        }
+
+        // Fungsi Menyalin Prompt ke Clipboard (Menggunakan fallback execCommand sesuai instruksi)
+        function copyPromptToClipboard() {
+            const promptText = document.getElementById('promptResult').innerText;
+            if (promptText.startsWith('Harap isi form')) {
+                showToast('Buat prompt terlebih dahulu!', 'error');
+                return;
+            }
+
+            // Membuat element textarea sementara untuk proses copy
+            const el = document.createElement('textarea');
+            el.value = promptText;
+            el.setAttribute('readonly', '');
+            el.style.position = 'absolute';
+            el.style.left = '-9999px';
+            document.body.appendChild(el);
+            el.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if(successful) {
+                    showToast('Prompt sukses disalin ke clipboard!');
+                } else {
+                    showToast('Gagal menyalin, silakan salin manual.', 'error');
+                }
+            } catch (err) {
+                showToast('Kesalahan saat menyalin!', 'error');
+            }
+            document.body.removeChild(el);
+        }
+
+        // Fungsi Toast Notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            
+            toastMsg.innerText = message;
+            
+            if (type === 'error') {
+                toast.classList.remove('bg-slate-900');
+                toast.classList.add('bg-rose-600');
+            } else {
+                toast.classList.remove('bg-rose-600');
+                toast.classList.add('bg-slate-900');
+            }
+            
+            // Animasi masuk
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            // Sembunyikan setelah 3 detik
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
